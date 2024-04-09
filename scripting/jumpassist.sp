@@ -143,76 +143,78 @@ public void OnPluginStart() {
 	).SetString(PLUGIN_VERSION);
 	g_cvarHostname = FindConVar("hostname");
 	g_cvarWaitingForPlayers = FindConVar("mp_waitingforplayers_time");
-	g_cvarWelcomeMsg = CreateConVar("sm_jawelcomemsg", "1", "Show clients the welcome message when they join?");
+	g_cvarWelcomeMsg = CreateConVar("sm_jawelcomemsg", "1", "Mostre aos clientes a mensagem de boas-vindas quando eles conectarem?");
 
 	g_cvarWelcomeMsg.AddChangeHook(cvarWelcomeMsgChanged);
 
 	// HELP
-	RegConsoleCmd("ja_help", cmdJAHelp, "Shows JA's commands.");
-	RegConsoleCmd("sm_jumptf", cmdJumpTF, "Shows the jump.tf website.");
-	RegConsoleCmd("sm_forums", cmdJumpForums, "Shows the jump.tf forums.");
-	RegConsoleCmd("sm_jumpassist", cmdJumpAssist, "Shows the forum page for JumpAssist.");
+	RegConsoleCmd("ja_help", cmdJAHelp, "Mostra os comandos do JA.");
+	RegConsoleCmd("sm_jumptf", cmdJumpTF, "Mostra o site jump.tf.");
+	RegConsoleCmd("sm_forums", cmdJumpForums, "Mostra os fóruns do jump.tf.");
+	RegConsoleCmd("sm_jumpassist", cmdJumpAssist, "Mostra a página do fórum do JumpAssist.");
 
 	// GENERAL
-	RegConsoleCmd("sm_s", cmdSave, "Saves your current position.");
-	RegConsoleCmd("sm_save", cmdSave, "Saves your current position.");
-	RegConsoleCmd("sm_t", cmdTele, "Teleports you to your current saved location.");
-	RegConsoleCmd("sm_tele", cmdTele, "Teleports you to your current saved location.");
-	RegConsoleCmd("sm_r", cmdReset, "Sends you back to the beginning without deleting your save.");
-	RegConsoleCmd("sm_reset", cmdReset, "Sends you back to the beginning without deleting your save.");
+	RegConsoleCmd("sm_s", cmdSave, "Salva sua posição atual.");
+	RegConsoleCmd("sm_save", cmdSave, "Salva sua posição atual..");
+	RegConsoleCmd("sm_t", cmdTele, "Teleporta você para sua localização salva atual.");
+	RegConsoleCmd("sm_tele", cmdTele, "Teleporta você para sua localização salva atual.");
+	RegConsoleCmd("sm_r", cmdReset, "Envia você de volta ao início sem excluir seu salvamento.");
+	RegConsoleCmd("sm_reset", cmdReset, "Envia você de volta ao início sem excluir seu salvamento.");
 	RegConsoleCmd("sm_restart", cmdRestart, "Deletes your save, and sends you back to the beginning.");
-	RegConsoleCmd("sm_undo", cmdUndo, "Restores your last saved position.");
-	RegConsoleCmd("sm_regen", cmdToggleAmmo, "Regenerates weapon ammunition");
-	RegConsoleCmd("sm_ammo", cmdToggleAmmo, "Regenerates weapon ammunition");
-	RegConsoleCmd("sm_superman", cmdSuperman, "Makes you strong like superman.");
-	RegConsoleCmd("sm_hardcore", cmdToggleHardcore, "Enables hardcore mode (No regen, no saves)");
+	RegConsoleCmd("sm_undo", cmdUndo, "Exclui seu save e te manda de volta ao início.");
+	RegConsoleCmd("sm_regen", cmdToggleAmmo, "Regenera munição.");
+	RegConsoleCmd("sm_ammo", cmdToggleAmmo, "Regenera munição.");
+	RegConsoleCmd("sm_regen on", cmdToggleAmmo, "Regenera munição/vida.")
+	RegConsoleCmd("sm_regen off", cmdToggleAmmo, "Desliga regeneração de munição/vida.")
+	RegConsoleCmd("sm_superman", cmdSuperman, "Torna você forte como o super-homem.");
+	RegConsoleCmd("sm_hardcore", cmdToggleHardcore, "Ativa o modo hardcore (sem regeneração, sem salvamentos)");
 	
-	RegConsoleCmd("sm_hidemessage", cmdHideMessage, "Toggles display of JA messages, such as save and teleport");
-	RegConsoleCmd("sm_explosions", cmdExplosions, "Toggles displaying explosions");
+	RegConsoleCmd("sm_hidemessage", cmdHideMessage, "Alterna a exibição de mensagens JA, como salvar e teletransportar");
+	RegConsoleCmd("sm_explosions", cmdExplosions, "Alterna a exibição de explosões");
 
 	// HIDE
-	RegConsoleCmd("sm_hide", cmdHide, "Show/Hide Other Players");
+	RegConsoleCmd("sm_hide", cmdHide, "Mostrar/ocultar outros jogadores");
 
 	// PREVIEW
-	RegConsoleCmd("sm_preview", cmdPreview, "Enables noclip, allowing preview of a map");
+	RegConsoleCmd("sm_preview", cmdPreview, "Ativa o noclip, permitindo a visualização de um mapa");
 
 	// TELEPORT
-	RegAdminCmd("sm_bring", cmdBring, ADMFLAG_ROOT, "Bring a client or group to your position.");
-	RegAdminCmd("sm_goto", cmdGoTo, ADMFLAG_RESERVATION, "Go to a client's position.");
-	RegAdminCmd("sm_send", cmdSendPlayer, ADMFLAG_GENERIC, "Send target to another target.");
+	RegAdminCmd("sm_bring", cmdBring, ADMFLAG_ROOT, "BTraga um cliente ou grupo para sua posição.");
+	RegAdminCmd("sm_goto", cmdGoTo, ADMFLAG_RESERVATION, "Vá para a posição de um cliente.");
+	RegAdminCmd("sm_send", cmdSendPlayer, ADMFLAG_GENERIC, "Enviar alvo para outro alvo.");
 
 	// SKEYS
-	RegConsoleCmd("sm_skeys", cmdGetClientKeys, "Toggle showing a client's keys.");
-	RegConsoleCmd("sm_skeyscolor", cmdChangeSkeysColor, "Changes the color of the text for skeys.");
-	RegConsoleCmd("sm_skeyscolors", cmdChangeSkeysColor, "Changes the color of the text for skeys.");
-	RegConsoleCmd("sm_skeyspos", cmdChangeSkeysLoc, "Changes the location of the text for skeys.");
-	RegConsoleCmd("sm_skeysloc", cmdChangeSkeysLoc, "Changes the location of the text for skeys.");
+	RegConsoleCmd("sm_skeys", cmdGetClientKeys, "Alternar a exibição das chaves de um cliente.");
+	RegConsoleCmd("sm_skeyscolor", cmdChangeSkeysColor, "Muda a cor do texto das teclas.");
+	RegConsoleCmd("sm_skeyscolors", cmdChangeSkeysColor, "Muda a cor do texto das teclas.");
+	RegConsoleCmd("sm_skeyspos", cmdChangeSkeysLoc, "Altera a localização do texto das teclas.");
+	RegConsoleCmd("sm_skeysloc", cmdChangeSkeysLoc, "Altera a localização do texto das teclas.");
 
 	// SPEC
-	RegConsoleCmd("sm_spec", cmdSpec, "sm_spec <target> - Spectate a player.");
+	RegConsoleCmd("sm_spec", cmdSpec, "sm_spec <alvo> - Espectar um jogador.");
 	RegConsoleCmd(
 		"sm_spec_ex",
 		cmdSpecLock,
-		"sm_spec_ex <target> - Consistently spectate a player, even through their death"
+		"sm_spec_ex <alvo> - Assistir consistentemente a um jogador, mesmo durante sua morte"
 	);
 	RegConsoleCmd(
 		"sm_speclock",
 		cmdSpecLock,
-		"sm_speclock <target> - Consistently spectate a player, even through their death"
+		"sm_speclock <alvo> - Assistir consistentemente a um jogador, mesmo durante sua morte"
 	);
 	RegAdminCmd("sm_fspec", cmdForceSpec, ADMFLAG_GENERIC, "sm_fspec <target> <targetToSpec>.");
 
 	// RACE
-	RegConsoleCmd("sm_race", cmdRace, "Initializes a new race.");
-	RegConsoleCmd("sm_leaverace", cmdRaceLeave, "Leave the current race.");
-	RegConsoleCmd("sm_r_leave", cmdRaceLeave, "Leave the current race.");
-	RegConsoleCmd("sm_specrace", cmdRaceSpec, "Spectate a race.");
-	RegConsoleCmd("sm_racelist", cmdRaceList, "Display race list");
-	RegConsoleCmd("sm_raceinfo", cmdRaceInfo, "Display information about the race you are in.");
-	RegAdminCmd("sm_serverrace", cmdRaceServer, ADMFLAG_GENERIC, "Invite everyone to a server wide race");
+	RegConsoleCmd("sm_race", cmdRace, "Inicializa uma nova corrida.");
+	RegConsoleCmd("sm_leaverace", cmdRaceLeave, "Sair da corrida atual.");
+	RegConsoleCmd("sm_r_leave", cmdRaceLeave, "Sair da corrida atual.");
+	RegConsoleCmd("sm_specrace", cmdRaceSpec, "Assistir a uma corrida.");
+	RegConsoleCmd("sm_racelist", cmdRaceList, "Exibir lista de corridas");
+	RegConsoleCmd("sm_raceinfo", cmdRaceInfo, "Exibe informações sobre a corrida em que você está.");
+	RegAdminCmd("sm_serverrace", cmdRaceServer, ADMFLAG_GENERIC, "Convide todos para uma corrida em todo o servidor");
 
 	// ADMIN
-	RegAdminCmd("sm_mapset", cmdMapSet, ADMFLAG_GENERIC, "Change map settings");
+	RegAdminCmd("sm_mapset", cmdMapSet, ADMFLAG_GENERIC, "Alterar configurações do mapa");
 
 	// HOOKS
 	HookEvent("player_team", eventPlayerChangeTeam);
@@ -316,7 +318,7 @@ public void OnPluginEnd() {
 	for (int i = 1; i <= MaxClients; ++i) {
 		if (IsClientPreviewing(i)) {
 		   DisablePreview(i, IsClientInGame(i));
-		   PrintJAMessage(i, "Plugin reloading: Restoring location");
+		   PrintJAMessage(i, "Plugin Recarregado: Restaurando localização");
 		}
 	}
 	
@@ -426,7 +428,7 @@ public void OnClientPostAdminCheck(int client) {
 	}
 
 	if (!GetClientAuthId(client, AuthId_Steam2, g_sClientSteamID[client], sizeof(g_sClientSteamID[]))) {
-		LogError("[JumpAssist] Unable to retrieve steam id on %N", client);
+		LogError("[JumpAssist] Não foi possível recuperar o ID do Steam %N", client);
 		return;
 	}
 
@@ -642,7 +644,7 @@ public void cvarWelcomeMsgChanged(ConVar convar, const char[] oldValue, const ch
 
 public Action listenerJoinClass(int client, const char[] command, int args) {
 	if (IsClientPreviewing(client)) {
-		PrintJAMessage(client, "You may not change class during"...cTheme2..." preview mode\x01.");
+		PrintJAMessage(client, "Você não pode mudar de classe durante"...cTheme2..." modo de pré-visualização\x01.");
 		return Plugin_Handled;
 	}
 
@@ -650,7 +652,7 @@ public Action listenerJoinClass(int client, const char[] command, int args) {
 	&& !IsPlayerFinishedRacing(client)
 	&& HasRaceStarted(client)
 	&& g_bRaceClassForce[g_iRaceID[client]]) {
-		PrintJAMessage(client, "Cannot change class while racing.");
+		PrintJAMessage(client, "Não é possível mudar de classe durante a corrida.");
 		return Plugin_Handled;
 	}
 
@@ -659,7 +661,7 @@ public Action listenerJoinClass(int client, const char[] command, int args) {
 
 public Action listenerJoinTeam(int client, const char[] command, int args) {
 	if (IsClientPreviewing(client)) {
-		PrintJAMessage(client, "You may not change team during"...cTheme2..." preview mode\x01.");
+		PrintJAMessage(client, "Você não pode mudar de classe durante"...cTheme2..." modo de pré-visualização\x01.");
 		return Plugin_Handled;
 	}
 
@@ -667,7 +669,7 @@ public Action listenerJoinTeam(int client, const char[] command, int args) {
 	int raceID = g_iRaceID[client];
 	// If raceid > 0 and player is in a race, prevent them from changing teams
 	if (raceID && (g_RaceStatus[raceID] == STATUS_COUNTDOWN || g_RaceStatus[raceID] == STATUS_RACING)) {
-		PrintJAMessage(client, "You may not change teams during a race.");
+		PrintJAMessage(client, "Não é possível mudar de equipe durante a corrid.");
 		return Plugin_Handled;
 	}
 
